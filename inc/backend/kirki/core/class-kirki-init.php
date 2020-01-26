@@ -54,7 +54,15 @@ class Kirki_Init {
 		$content_url = untrailingslashit( dirname( dirname( get_stylesheet_directory_uri() ) ) );
 		$content_dir = wp_normalize_path( untrailingslashit( WP_CONTENT_DIR ) );
 
-		Kirki::$url = str_replace( $content_dir, $content_url, wp_normalize_path( Kirki::$path ) );
+		/**
+		 * Wrong URL
+		 *
+		 * See https://github.com/aristath/kirki/issues/2296
+		 *
+		 * @author Valerio Bozzolan
+		 */
+		// Kirki::$url = str_replace( $content_dir, $content_url, wp_normalize_path( Kirki::$path ) );
+		Kirki::$url = $content_url . '/plugins/ttg-core/inc/backend/kirki';
 
 		// Apply the kirki/config filter.
 		$config = apply_filters( 'kirki/config', array() );
